@@ -2,6 +2,10 @@ from flask import Flask, render_template, session, request
 import game
 import random, copy
 
+import sys
+sys.stdout = open('log.txt', 'a')
+sys.stderr = open('log.txt', 'a')
+
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "verysecretmuchlol"
 app.config["DEBUG"] = True
