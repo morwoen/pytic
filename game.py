@@ -14,6 +14,19 @@ def hashBoard(board):
             result += item
     return result
 
+def randomMove(board):
+    possibleActions = []
+    for rindex, row in enumerate(board):
+        for cindex, value in enumerate(row):
+            if not value:
+                possibleActions.append([rindex, cindex])
+
+    if len(possibleActions):
+        randomChoice = random.randint(0, len(possibleActions) - 1)
+        choice = possibleActions[randomChoice]
+        return choice[0], choice[1]
+    return -1, -1
+
 # Returns row, column of the AI's action
 def nextMove(board):
     boardHash = hashBoard(board)
@@ -33,21 +46,10 @@ def nextMove(board):
                 bestChance = chance
                 bestAction = action
 
-        splitAction = bestAction.split(",")
-        return int(splitAction[0]), int(splitAction[1])
-
-    else:
-        possibleActions = []
-        for rindex, row in enumerate(board):
-            for cindex, value in enumerate(row):
-                if not value:
-                    possibleActions.append([rindex, cindex])
-
-        if len(possibleActions):
-            randomChoice = random.randint(0, len(possibleActions) - 1)
-            choice = possibleActions[randomChoice]
-            return choice[0], choice[1]
-        return -1, -1
+        if bestAction:
+            splitAction = bestAction.split(",")
+            return int(splitAction[0]), int(splitAction[1])
+    return randomMove(board)
 
 # Remember all actions
 def remember(actions, multiplier = 1):
