@@ -50,7 +50,7 @@ def nextMove(board):
         return -1, -1
 
 # Remember all actions
-def remember(actions):
+def remember(actions, multiplier = 1):
     for result in actions:
         board = result[0]
         row = result[1]
@@ -64,16 +64,16 @@ def remember(actions):
             situation = data[boardHash]
             situation["total"] += 1
             if actionKey in situation:
-                situation[actionKey] += 1
+                situation[actionKey] += multiplier
             else:
-                situation[actionKey] = 1
+                situation[actionKey] = multiplier
 
         else:
             # Never been in this situation
             data[boardHash] = {
                 "total": 1
             }
-            data[boardHash][actionKey] = 1
+            data[boardHash][actionKey] = multiplier
 
 def won():
     registerOutcome("wins")

@@ -68,8 +68,8 @@ def index():
             # game.remember(session["player"], False)
             game.won()
         elif tie:
-            game.remember(session["own"])
-            game.remember(session["player"])
+            game.remember(session["own"], 0.5)
+            game.remember(session["player"], 0.5)
             game.tie()
 
         game.save()
