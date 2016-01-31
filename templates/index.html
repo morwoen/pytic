@@ -9,7 +9,7 @@
             <div class="row">
                 {% set rowloop = loop %}
                 {% for value in line %}
-                    <a class="btn btn-primary" style="margin-top: 3px" href="{{ url_for('index', column=loop.index, row=rowloop.index) }}">
+                    <a class="btn btn-primary" style="margin-top: 3px" href="?column={{loop.index}}&row={{rowloop.index}}">
                         {% if value == '' %}
                             <span class="glyphicon glyphicon-unchecked"></span>
                         {% elif value == 'x' %}
@@ -28,15 +28,15 @@
         {% if winner != '' or tie %}
             {% if winner == 'x' %}
             <div class="col-md-12 text-center">
-                You won!!! <a href="{{ url_for('index') }}">Restart</a>
+                You won!!! <a href="?">Restart</a>
             </div>
             {% elif winner == 'o' %}
             <div class="col-md-12 text-center">
-                You lost!!! <a href="{{ url_for('index') }}">Restart</a>
+                You lost!!! <a href="?">Restart</a>
             </div>
             {% elif tie %}
             <div class="col-md-12 text-center">
-                TIE!!! <a href="{{ url_for('index') }}">Restart</a>
+                TIE!!! <a href="?">Restart</a>
             </div>
             {% endif %}
         {% endif %}
