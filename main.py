@@ -65,16 +65,16 @@ def index():
         if winner == "x":
             # player won
             game.remember(session["own"], -0.5)
-            game.remember(session["player"])
+            game.remember(session["player"], 1, True)
             game.lost()
         elif winner == "o":
             # ai won
             game.remember(session["own"])
-            game.remember(session["player"], -0.5)
+            game.remember(session["player"], -0.5, True)
             game.won()
         elif tie:
             game.remember(session["own"], 0.5)
-            game.remember(session["player"], 0.5)
+            game.remember(session["player"], 0.5, True)
             game.tie()
 
         game.save()

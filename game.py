@@ -14,6 +14,17 @@ def hashBoard(board):
             result += item
     return result
 
+def flipHash(bhash):
+    result = ""
+    for c in bhash:
+        if c == "x":
+            result += "o"
+        elif c == "o":
+            result += "o"
+        else:
+            result += c
+    return result
+
 def randomMove(board):
     possibleActions = []
     for rindex, row in enumerate(board):
@@ -52,13 +63,15 @@ def nextMove(board):
     return randomMove(board)
 
 # Remember all actions
-def remember(actions, multiplier = 1):
+def remember(actions, multiplier = 1, flipSide = False):
     for result in actions:
         board = result[0]
         row = result[1]
         column = result[2]
 
         boardHash = hashBoard(board)
+        if flipSide:
+            boardHash = flipHash(boardHash)
 
         actionKey = str(row) + "," + str(column)
         if boardHash in data:
