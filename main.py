@@ -3,8 +3,9 @@ import game
 import random, copy
 
 import sys
-sys.stdout = open('log.txt', 'a')
-sys.stderr = open('log.txt', 'a')
+f = open('log.txt', 'a')
+sys.stdout = f
+sys.stderr = f
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "verysecretmuchlol"
